@@ -1,0 +1,48 @@
+/*	Noir HTML5 mobile template  www.QRdvark.com  10jun11	*/
+/*	'Noir' by Azalea Software, Inc. is licensed under the Creative Commons Attribution 3.0 Unported License (CC BY 3.0)	*/
+/*	CSS inspired by Muthu http://discoverweb.info	*/
+/*		online CSS compression: http://www.refresh-sf.com/yui/	*/
+
+* {
+ -webkit-text-size-adjust:none;
+}
+body {
+	background-color:#fff;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 90%;
+	line-height: 145%;
+	color: #fff;
+	margin: 0px;
+	padding: 0px;
+	/*background-attachment: relative;*/
+	background-image: url(bg.png);
+	/*background-repeat: repeat-x;*/
+}
+
+.pageHead {
+	display: relative;
+	color: #fff;
+	font-size: 150%;
+	font-weight: bold;
+	text-indent: -10px;
+	padding-top: 55px;
+	
+}
+
+.centerMe {
+ text-align: center;
+}
+
+.footer {
+	padding: 2px;
+	line-height: 110%;
+	font-size: 80%;
+	text-align: center;
+	background-attachment: scroll;
+	background-color: transparent;
+	background-image: url(bg.png);
+	background-repeat: repeat-x;
+	background-position: 0 -56px;
+	margin-right: -25px;
+	margin-left: -25px;
+}

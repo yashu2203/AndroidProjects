@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    
+     <!-- pressed -->
+    <item > 
+        <layer-list>
+        <item android:right="20dp" android:top="20dp">
+            <shape>
+                <corners android:radius="3dp" />
+                <solid android:color="#D6D6D6" />
+            </shape>
+        </item>
+        <item android:drawable="@color/gray" >
+            
+        </item>
+    </layer-list>
+        
+        </item>
+
+
+</selector>

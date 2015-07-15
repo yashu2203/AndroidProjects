@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">F.R.I.E.N.D.S</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    
+    <string-array name="items">
+        <item>Season 1</item>
+        <item>Season 2</item>
+        <item>Season 3</item>
+        <item>season 4</item>
+        <item>Season 5</item>
+        <item>Season 6</item>
+        <item>season 7</item>
+        <item>Season 8</item>
+        <item>Season 9</item>
+        <item>Season 10</item>
+        
+    </string-array>
+    <string name="drawername">List Of Seasons</string>
+  
+
+</resources>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:id="@+id/rl"
+   android:background="#EEE9BF" >
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
+
+    </ListView>
+
+    <Button
+            android:id="@+id/manual1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/list"
+            
+            android:text="Did not find the desired book? Raise a Request" 
+            android:background="@color/white"/>
+        
+        
+   
+    
+    <SlidingDrawer
+        android:id="@+id/sd1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        
+        android:content="@+id/content"
+        android:handle="@+id/handle" 
+        android:animateOnClick="true"
+        >
+
+        <Button
+            android:id="@+id/handle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="View Cart" 
+            
+            android:textColor="@color/white"
+            android:background="@color/gray"
+            android:src="@drawable/cart"/>
+
+        <RelativeLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" 
+            android:orientation="horizontal"
+            android:background="@color/white"
+            android:clickable="true">
+
+            <ListView
+                android:id="@+id/list2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="86dp" >
+            </ListView>
+
+            <Button
+                android:id="@+id/checkout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:text="Checkout" />
+            
+        </RelativeLayout>
+    </SlidingDrawer>
+    
+</RelativeLayout>

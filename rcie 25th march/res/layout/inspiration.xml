@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+<RelativeLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="#000000"
+    >
+
+     
+    <TextView android:id="@+id/text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:paddingTop="25dip"
+        android:typeface="monospace"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="?android:attr/actionBarSize"
+        />
+     <com.sl.rcie.KenBurnsView
+            android:id="@+id/picture"
+            android:layout_width="match_parent"
+            android:layout_height="250dip"
+            android:src="@drawable/bghome"
+            
+            android:layout_below="@id/text1"
+             />
+    <!--   <TextView android:id="@+id/text2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quote 2"
+        android:layout_below="@id/picture"/>
+    -->
+    
+    <ListView android:id="@+id/quotelist1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/picture"
+  		android:divider="@color/super_light_grey"
+        android:background="#eeeeee"
+        android:paddingTop="10dip"
+        android:paddingBottom="10dip"
+        />
+     
+     <com.sl.rcie.KenBurnsView
+            android:id="@+id/picture2"
+            android:layout_width="match_parent"
+            android:layout_height="250dip"
+            android:src="@drawable/bghome"
+            
+            android:layout_below="@id/quotelist1"
+             />
+     <ListView android:id="@+id/quotelist2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/picture2"
+  		android:divider="@color/super_light_grey"
+        android:background="#eeeeee"
+        android:paddingTop="10dip"
+        android:paddingBottom="10dip"/>
+
+      <com.sl.rcie.KenBurnsView
+            android:id="@+id/picture3"
+            android:layout_width="match_parent"
+            android:layout_height="250dip"
+            android:src="@drawable/bghome"
+            
+            android:layout_below="@id/quotelist2"
+             />
+     <ListView android:id="@+id/quotelist3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/picture3"
+  		android:divider="@color/super_light_grey"
+        android:background="#eeeeee"
+        android:paddingTop="10dip"
+        android:paddingBottom="10dip"/>
+     
+     
+     
+</RelativeLayout>
+</ScrollView>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/ep_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="7dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/border"
+        android:maxHeight="70dp"
+        android:maxWidth="55dp"
+        android:minHeight="60dp"
+        android:minWidth="60dp"
+        android:src="@drawable/s1e1" />
+
+    <TextView
+        android:id="@+id/epname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ep_icon"
+        android:layout_toRightOf="@+id/ep_icon"
+        android:text="episode name"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/airdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/epname"
+        android:layout_toRightOf="@+id/ep_icon"
+        android:text="Air date"
+        android:textColor="@color/white" />
+
+</RelativeLayout>

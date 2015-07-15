@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/selectable_background"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/list_item_card_text"
+        style="@style/ListItemText"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:background="#0071c5"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:layout_margin="-10dp"
+        android:layout_height="40dp" />
+    <LinearLayout 
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:layout_height="wrap_content" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:src="@drawable/zostel2" />
+    <TextView
+        android:id="@+id/item1"
+        style="@style/ListItemText"
+        android:text="Zostel launches an ‘entrepreneurship development programme’, will let anyone start their backpacker hostel "
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content" />
+    
+    </LinearLayout>
+
+    <View
+        android:id="@+id/list_item_seperator"
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:background="@color/light_grey" />
+
+    <LinearLayout
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </LinearLayout>
+
+</LinearLayout>
