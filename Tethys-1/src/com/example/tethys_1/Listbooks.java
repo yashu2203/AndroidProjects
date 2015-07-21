@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,17 +13,13 @@ import org.json.JSONObject;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -41,7 +38,7 @@ import android.widget.SlidingDrawer;
 import android.widget.SlidingDrawer.OnDrawerCloseListener;
 import android.widget.SlidingDrawer.OnDrawerOpenListener;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import com.sweetlime.tethys.R;
 
 
@@ -285,6 +282,7 @@ jp = new Jsparser();
 				
 					Intent i = new Intent(Listbooks.this,Checkout.class);
 					i.putExtra("check",s);
+					i.putExtra("colg",clg);
 					startActivity(i);
 				
 					Listbooks.this.finish();
@@ -322,12 +320,11 @@ jp = new Jsparser();
        protected String doInBackground(String... args) {
        	List<NameValuePair> params = new ArrayList<NameValuePair>(); 
            // getting JSON string from URL
-       	 //params.add(new BasicNameValuePair("dept", "AERO"));
-            //params.add(new BasicNameValuePair("sem", "4"));
+       	 params.add(new BasicNameValuePair("dept", dept));
+            params.add(new BasicNameValuePair("sem", sem+""));
  
-       url_all_products+="?dept="+dept+"&sem="+sem;
        	
-           JSONObject json = jp.makeHttpRequest(url_all_products, "GET", params);
+           JSONObject json = jp.makeHttpRequest("http://mywamp.hostei.com/query.php", "GET", params);
 
            // Check your log cat for JSON reponse
            //Log.d("All Products: ", json.toString());
@@ -353,13 +350,10 @@ jp = new Jsparser();
 
                    }
                  else {
-                      Toast.makeText(getApplicationContext(),"no Books found",Toast.LENGTH_SHORT).show();
-                                     
-               }
+                 }
            } catch (JSONException e) {
                e.printStackTrace();
            }
-          url_all_products="http://mywamp.hostei.com/query.php";
            return null;
            
        }
@@ -370,7 +364,11 @@ jp = new Jsparser();
        @TargetApi(Build.VERSION_CODES.HONEYCOMB) @SuppressLint("NewApi") @SuppressWarnings("unchecked")
 		protected void onPostExecute(String file_url) {
            // dismiss the dialog after getting all products
-           pDialog.dismiss();
+
+    	    if (pDialog.isShowing()){
+    	                    pDialog.dismiss();
+
+    	                }
            // updating UI from Background Thread
            
            adapter2 = new ArrayAdapter<String>(Listbooks.this,android.R.layout.simple_list_item_1,itembooks);

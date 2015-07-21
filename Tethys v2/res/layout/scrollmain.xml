@@ -90,49 +90,26 @@
     <RelativeLayout android:layout_width="wrap_content"
              android:layout_height="wrap_content" 
              android:layout_marginTop="20dp">
-    <TextView
-        android:id="@+id/enter"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Enter Roll Number"
-        android:textAppearance="?android:attr/textAppearanceMedium" 
-        android:paddingTop="10dp"
-        android:paddingLeft="15dp"
-        android:textStyle="bold|italic"
-        android:layout_marginBottom="5dp"
-        />
     
-    <View    android:id="@+id/line2"
-             android:layout_below="@id/enter"
-             android:layout_width="match_parent"
-             android:layout_marginLeft="5dp"
-             android:layout_marginRight="5dp"
-             android:layout_height="2dp"
-             android:background="#c0c0c0"/>
-    
-    <EditText
-        android:id="@+id/rollno"
+    <View
+        android:id="@+id/line2"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_below="@+id/line2"
-        android:layout_margin="30dp"
-        android:ems="10"
-        android:inputType="number"
-        android:paddingLeft="10dp"
-        android:textColor="@color/gray" 
-        android:background="@drawable/edittextbg">
-    </EditText>
+        android:layout_height="2dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="#c0c0c0" />
 
     <Button
         android:id="@+id/next"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_below="@+id/line2"
         android:layout_margin="5dp"
-        android:layout_below="@id/rollno"
+        android:background="@drawable/nextbtn"
         android:text="Continue >>"
         android:textColor="@color/white"
-        android:textSize="20dp"
-        android:background="@drawable/nextbtn" />
+        android:textSize="20dp" />
+
     </RelativeLayout>
     
     

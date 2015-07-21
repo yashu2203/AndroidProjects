@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,18 +13,13 @@ import org.json.JSONObject;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -44,6 +40,7 @@ import android.widget.SlidingDrawer.OnDrawerCloseListener;
 import android.widget.SlidingDrawer.OnDrawerOpenListener;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.sweetlime.tethys.R;
 
 
@@ -115,7 +112,7 @@ class books{
 
 
 
-public class Listbooks extends ListFragment {
+@SuppressLint("NewApi") public class Listbooks extends ListFragment {
     String dept,clg;
     int sem;
     private ProgressDialog pDialog;
@@ -138,16 +135,17 @@ public class Listbooks extends ListFragment {
     // products JSONArray
     JSONArray products = null;
     SlidingDrawer sd;
-    
+    int color;
+    int flag=1;
     public Listbooks()
     {	
     }
-    Listbooks(String a,int b,String c,Context ct)
+    Listbooks(String a,int b,String c,Context ct,int col)
     {
     	dept = a;
     	sem = b;
     	clg = c;
-    	
+    	color = col;
     }
     
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -285,6 +283,7 @@ public class Listbooks extends ListFragment {
    					new cartdb(getActivity().getApplicationContext()).delBook(p);
    				}
    					Intent i = new Intent(context,Checkout.class);
+   					i.putExtra("college", clg);
    					i.putExtra("check",s);
    					startActivity(i);
    			}
@@ -314,12 +313,11 @@ public class Listbooks extends ListFragment {
        protected String doInBackground(String... args) {
        	List<NameValuePair> params = new ArrayList<NameValuePair>(); 
            // getting JSON string from URL
-       	 //params.add(new BasicNameValuePair("dept", "AERO"));
-            //params.add(new BasicNameValuePair("sem", "4"));
+       	   params.add(new BasicNameValuePair("dept", dept));
+           params.add(new BasicNameValuePair("sem", sem+""));
  
-       url_all_products+="?dept="+dept+"&sem="+sem;
        	
-           JSONObject json = jp.makeHttpRequest(url_all_products, "GET", params);
+           JSONObject json = jp.makeHttpRequest("http://mywamp.hostei.com/query.php", "GET", params);
 
            // Check your log cat for JSON reponse
            //Log.d("All Products: ", json.toString());
@@ -339,13 +337,13 @@ public class Listbooks extends ListFragment {
                          books temp = new books(c.getString("department"),Integer.parseInt(c.getString("semester")),c.getString("subject"),c.getString("author"),Integer.parseInt(c.getString("mrp")),Integer.parseInt(c.getString("nmrp")) ,Integer.parseInt(c.getString("omrp")) );
                          eps.add(temp);
                        }  
+                       eps.add(new books("",0,"Did not find your book? Click this to make a custom order","",0,0,0));
                        Log.d("Length",booksob.length()+"");
                        //Log.d("eps",eps.toString());
 
                    }
                  else {  
-                      Toast.makeText(getActivity().getApplicationContext(),"no Books found",Toast.LENGTH_SHORT).show();
-                                     
+                      flag=0;
                }
            } catch (JSONException e) {
                e.printStackTrace();
@@ -361,9 +359,11 @@ public class Listbooks extends ListFragment {
        @TargetApi(Build.VERSION_CODES.HONEYCOMB) @SuppressLint("NewApi") @SuppressWarnings("unchecked")
 		protected void onPostExecute(String file_url) {
            // dismiss the dialog after getting all products
-           pDialog.dismiss();
+           //pDialog.dismiss();
            // updating UI from Background Thread
-           adapter=new myadapter(getActivity(), eps);
+    	   if(flag==0)
+    	   Toast.makeText(getActivity().getApplicationContext(),"no Books found",Toast.LENGTH_SHORT).show();
+    	   adapter=new myadapter(getActivity(), eps);
     		lv.setAdapter(adapter);
     		mylistener a = new mylistener();
     		lv.setOnItemClickListener(a);
@@ -391,7 +391,7 @@ public class Listbooks extends ListFragment {
 		//find the episode that needs to be filled with info
 		purchase cpur= pur.get(position);
 		//fill the imageview
-		ImageView iv=(ImageView) vu.findViewById(R.id.bicon);
+	    ImageView iv=(ImageView) vu.findViewById(R.id.bicon);
 		iv.setImageResource(R.drawable.b1);
 		//fill the ep name
 		TextView tv1=(TextView) vu.findViewById(R.id.bookname);
@@ -399,7 +399,7 @@ public class Listbooks extends ListFragment {
 		//fill the airdate
 		TextView tv2=(TextView) vu.findViewById(R.id.price);
 		tv2.setText(""+cpur.getAuth());
-		
+	 
 		return vu;
 	                } 
    
@@ -413,6 +413,16 @@ public class Listbooks extends ListFragment {
 		public void onItemClick(AdapterView<?> arg0, View arg1, int pos,
 				long arg3) {
 			// TODO Auto-generated method stub
+		if(pos==eps.size()-1)
+		 {
+	      Intent i = new Intent(context,Manual.class);
+	      Bundle b = new Bundle();
+	      b.putInt("color",color);
+	      i.putExtras(b);
+	      startActivity(i);
+		 }
+		else
+		 {	
 			books bcd = eps.get(pos);
 			Intent i = new Intent(context,eachbook.class);
 			i.putExtra("sub",bcd.getSubject());
@@ -420,8 +430,11 @@ public class Listbooks extends ListFragment {
 			i.putExtra("mrp", bcd.getMrp() +"");
 			i.putExtra("omrp", bcd.getOmrp()+"");
 			i.putExtra("nmrp",bcd.getNmrp()+"");
+			Bundle b = new Bundle();
+		    b.putInt("color",color);
+		    i.putExtras(b);
 			startActivity(i);
-			
+		 }	
 		}
     	
     }
@@ -446,7 +459,8 @@ public class Listbooks extends ListFragment {
 			//find the episode that needs to be filled with info
 			books currentb= eps.get(position);
 			//fill the imageview
-			ImageView iv=(ImageView) vu.findViewById(R.id.bicon);
+	    if(position!=eps.size()-1)
+	    {	ImageView iv=(ImageView) vu.findViewById(R.id.bicon);
 			iv.setImageResource(R.drawable.b1);
 			//fill the ep name
 			TextView tv1=(TextView) vu.findViewById(R.id.bookname);
@@ -454,7 +468,20 @@ public class Listbooks extends ListFragment {
 			//fill the airdate
 			TextView tv2=(TextView) vu.findViewById(R.id.price);
 			tv2.setText(currentb.getAuthor());
-			
+	    }
+	    else
+	    {
+	    	ImageView iv=(ImageView) vu.findViewById(R.id.bicon);
+			iv.setImageResource(0);
+			iv.setEnabled(false);
+			iv.setVisibility(ImageView.INVISIBLE);
+			//fill the ep name
+			TextView tv1=(TextView) vu.findViewById(R.id.bookname);
+			tv1.setText("Did not find your Book? Place a manual request");
+			//fill the airdate
+			TextView tv2=(TextView) vu.findViewById(R.id.price);
+			tv2.setText("");
+	    }
 			
 			
 			

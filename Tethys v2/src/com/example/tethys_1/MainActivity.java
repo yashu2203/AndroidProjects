@@ -26,7 +26,7 @@ import com.sweetlime.tethys.R;
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         getActionBar().hide();
         setContentView(R.layout.activity_main);
-      
+        
         final String DB_PATH = "data/data/"+getPackageName()+"/databases/cart3";
         try{
         	File file = new File(DB_PATH);

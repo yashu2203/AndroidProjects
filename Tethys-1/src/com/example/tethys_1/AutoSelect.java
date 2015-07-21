@@ -22,8 +22,8 @@ public class AutoSelect extends Activity{
 Spinner s1,s2;
 Button b1;
 String s;
-String[] dept={"MECH","AUTO","CSE","IT","ECE","EEE","BIOTECH","AERO","CIVIL"};
-String[] sem={"2","4","6",};
+String[] dept={"MECH","AUTO","CSE","IT","ECE","EEE","BIOTECH","AERO","CIVIL","BIOMED"};
+String[] sem={"1","2","3","4","5","6","7","8"};
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub

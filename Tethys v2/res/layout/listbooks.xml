@@ -76,6 +76,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/nextbtn"
                 android:text="Checkout" />
 
             <ListView

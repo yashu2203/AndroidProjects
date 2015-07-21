@@ -22,9 +22,9 @@ public class College extends Activity {
 
 	Spinner s1;
 	Button c;
-	String [] coll = {"Select College","REC"};
+	String [] coll = {"Select College","Rajalakshmi Engineering College","Rajalakshmi Institute of Technology","Maamallan Institute of Technology","Sree Sastha Institute of Technology"};
 	Context  context;
-	EditText e1;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -36,7 +36,7 @@ public class College extends Activity {
 		
 		context = getApplication().getApplicationContext();
 		
-		 e1 = (EditText) findViewById(R.id.RollEdit);
+	
      
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,coll);
 
@@ -56,32 +56,6 @@ public class College extends Activity {
 			}
 			else{
 				
-				String x=e1.getText().toString();
-				
-			
-				
-				Date d  = new Date();
-				
-				int curyear  = d.getYear() + 1900;
-				
-				String cur = curyear+"";
-				
-				int curint=0;
-				
-				if(x.length()<4)
-					Toast.makeText(getApplicationContext(), "Invalid Roll no", Toast.LENGTH_SHORT).show();
-				else	
-				{ curint = Integer.parseInt(x.substring(0,4));
-				
-				
-				//Toast.makeText(getApplicationContext(), ""+curyear, Toast.LENGTH_SHORT).show();
-				
-				
-				if(x.length()<9 || !(x.startsWith("20")) || (curint>curyear) || ((curyear-curint)>4) )
-				{
-					Toast.makeText(getApplicationContext(), "Invalid Roll no", Toast.LENGTH_SHORT).show();
-				}
-				else{
 				Intent i = new Intent(context,AutoSelect.class);
 				Bundle b = new Bundle();
 				b.putString("College",coll[s1.getSelectedItemPosition()]);
@@ -89,8 +63,8 @@ public class College extends Activity {
 				//new cartdb(College.this);
 				startActivity(i);
 				College.this.finish();
-				}
-			}}
+				
+			}
 			}
 		});
 		

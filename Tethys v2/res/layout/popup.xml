@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="#EEDFCC" >
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF" >
 
     <TextView
         android:id="@+id/bauth"
@@ -41,7 +41,6 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/remove"
         android:layout_below="@+id/remove"
-        android:layout_marginTop="24dp"
         android:text=" " />
 
     <Button
@@ -50,7 +49,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="29dp"
+        android:textColor="@color/white"
+        android:background="@drawable/ritorig"
         android:text="Remove from Cart" />
 
     <TextView
@@ -63,23 +66,13 @@
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <Button
-        android:id="@+id/edit"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="14dp"
-        android:background="@drawable/pp" />
-
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/bauth"
         android:layout_below="@+id/edit"
+        android:layout_marginTop="10dp"
         android:text="Large Text"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 

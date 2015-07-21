@@ -19,7 +19,7 @@ import com.sweetlime.tethys.R;
 
 public class Checkout extends Activity {
 
-	EditText e1,e2,e3,e4;
+	EditText e1,e2,e3,e4,e5;
 
 	Button b;
 	
@@ -35,6 +35,8 @@ public class Checkout extends Activity {
 	e2 = (EditText) findViewById(R.id.deptt);
 	e3 = (EditText) findViewById(R.id.ephone);
 	e4 = (EditText) findViewById(R.id.etm);
+	e5 = (EditText) findViewById(R.id.ref);
+		e4.setText(getIntent().getStringExtra("college"));
 		
 	b= (Button) findViewById(R.id.finbutton);
 	b.setOnClickListener(new OnClickListener() {
@@ -44,25 +46,8 @@ public class Checkout extends Activity {
 			// TODO Auto-generated method stub
 			
 
-			String x=e4.getText().toString();
-			
-			Date d  = new Date();
-			
-			int curyear  = d.getYear() + 1900;
-			
-			String cur = curyear+"";
-			
-			int curint=0;
-			
-			if(x.length()<4)
-				Toast.makeText(getApplicationContext(), "Invalid Roll no", Toast.LENGTH_SHORT).show();
-			
-			else
-			{
-				curint = Integer.parseInt(x.substring(0,4));
 				
-				
-			if(e1.getText().toString().equals("") || e2.getText().toString().equals("") || e3.getText().toString().equals("") ||e4.getText().toString().equals("") || e3.getText().toString().length()<10||x.length()<9 || !(x.startsWith("20")) || (curint>curyear) || ((curyear-curint)>4))
+			if(e1.getText().toString().equals("") || e2.getText().toString().equals("") || e3.getText().toString().equals("") ||e4.getText().toString().equals("") || e3.getText().toString().length()<10)
 			{
 			Toast.makeText(getApplicationContext(), "Enter valid information", Toast.LENGTH_SHORT).show();
 			}
@@ -87,7 +72,8 @@ alertDialogBuilder.setTitle("Confirm.");
 								s=s+"Customer Name:"+e1.getText().toString()+"\n";
 								s=s+"Customer Department:"+e2.getText().toString()+"\n";
 								s=s+"Customer Phone:"+e3.getText().toString()+"\n";
-								s=s+"Customer Roll:"+e4.getText().toString()+"\n\n\n";
+								s=s+"Customer College:"+e4.getText().toString()+"\n";
+								s=s+"Referral Code:"+e5.getText().toString()+"\n\n\n";
 							String to="storetethys@yahoo.com"; 
 							Intent email = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:storetethys@yahoo.com"));
 							 email.putExtra(Intent.EXTRA_EMAIL, new String[]{ to});
@@ -96,6 +82,8 @@ alertDialogBuilder.setTitle("Confirm.");
 								Intent i = new  Intent(Checkout.this,NavigationActivity.class);
 								//i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 								//i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+								i.putExtra("clg",e4.getText().toString());
+								
 								startActivity(i);
 								
 								
@@ -138,7 +126,7 @@ alertDialogBuilder.setTitle("Confirm.");
 			}
 			
 			
-		}
+		
 		}
 	});
 		

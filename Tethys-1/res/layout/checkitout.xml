@@ -66,8 +66,8 @@
         android:id="@+id/etm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/etmail"
         android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
         android:ems="10"
         android:inputType="number" />
 
@@ -91,21 +91,46 @@
         android:text="Phone number:" />
 
     <TextView
-        android:id="@+id/etmail"
+        android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/etm"
         android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:text="Roll Number:" />
+        android:text="College" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/finbutton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/etm"
-        android:layout_marginTop="63dp"
+        android:layout_marginBottom="27dp"
         android:text="For further details, Contact:9566566267\nE-mail:storetethys@yahoo.com" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView6"
+        android:layout_marginTop="35dp"
+        android:text="Referral Code" />
+
+    <EditText
+        android:id="@+id/refcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView7"
+        android:layout_alignParentRight="true"
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView7"
+        android:text="(optional)" />
 
 </RelativeLayout>

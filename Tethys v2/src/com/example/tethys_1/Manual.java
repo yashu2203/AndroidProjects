@@ -1,31 +1,52 @@
 package com.example.tethys_1;
 
+import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 import com.sweetlime.tethys.R;
 
-public class Manual extends Activity {
+@SuppressLint("NewApi") public class Manual extends Activity {
 
 	EditText e1,e2,e3,e4,e5;
 	Button b;
-	Spinner s1;
-	
-	String cond[]={"Select Book Condition","Old","New"};
+Spinner s1;
+	RadioGroup r;
+	RadioButton c;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.manual);
-		s1=(Spinner) findViewById(R.id.condspinn);
+		Intent i = getIntent();
+		int color = i.getIntExtra("color",R.color.black);
+		
+	/*	Window window = getWindow();
+	    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+	    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+	    window.setStatusBarColor(color); */
+		
+	    setContentView(R.layout.manual);
+	    ActionBar ab = getActionBar();
+	
+	    r  = (RadioGroup) findViewById(R.id.radiogrup);
+	     	 	
+	    
+		ab.setBackgroundDrawable(getResources().getDrawable(color));
+		
 		e1 = (EditText) findViewById(R.id.sub);
 		e2 = (EditText) findViewById(R.id.author);
 		e3 = (EditText) findViewById(R.id.custn);
@@ -33,9 +54,7 @@ public class Manual extends Activity {
 		e5 = (EditText) findViewById(R.id.Qedit);
 		b = (Button) findViewById(R.id.mproceed);
 		
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,cond);
-
-		s1.setAdapter(adapter);
+		setContentView(R.layout.manual);
 		
 		b.setOnClickListener(new OnClickListener() {
 			
@@ -48,7 +67,11 @@ public class Manual extends Activity {
 				String custn = e3.getText().toString();
 				String custp  =e4.getText().toString();
 				String quantity = e5.getText().toString();
-				String condi = cond[s1.getSelectedItemPosition()];
+				
+				
+				c= (RadioButton) findViewById(r.getCheckedRadioButtonId());
+				 	
+		        String cond = c.getText().toString();
 				
 				
 				boolean a = validate();
@@ -58,7 +81,7 @@ public class Manual extends Activity {
 				Intent email = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:storetethys@yahoo.com"));
 				  email.putExtra(Intent.EXTRA_EMAIL, new String[]{ to});
 				  email.putExtra(Intent.EXTRA_SUBJECT, "Order for Books");
-				  email.putExtra(Intent.EXTRA_TEXT,"Book Wanted:\nCustomer Name:"+custn+"\n Customer Phone:"+custp+"\n Subject:"+sub+"\nAuthor:"+author+"\nQuantity:"+quantity);
+				  email.putExtra(Intent.EXTRA_TEXT,"Book Wanted:\nCustomer Name:"+custn+"\n Customer Phone:"+custp+"\n Subject:"+sub+"\nAuthor:"+author+"\nQuantity:"+quantity+"Condition:"+cond);
 				
 					
 				  Intent i = new Intent(Manual.this,NavigationActivity.class);
@@ -85,7 +108,7 @@ public class Manual extends Activity {
 				// TODO Auto-generated method stub
 				
 				
-				if(e1.getText().toString().equals("") || e2.getText().toString().equals("") || e3.getText().toString().equals("") ||e4.getText().toString().equals("") ||e5.getText().toString().equals("") || e4.getText().toString().length()<10 || s1.getSelectedItemPosition()==0 )
+				if(e1.getText().toString().equals("") || e2.getText().toString().equals("") || e3.getText().toString().equals("") ||e4.getText().toString().equals("") ||e5.getText().toString().equals("") || e4.getText().toString().length()<10 )
 				return false;
 				
 				else 

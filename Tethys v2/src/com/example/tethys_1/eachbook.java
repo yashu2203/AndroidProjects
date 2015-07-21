@@ -1,13 +1,14 @@
 package com.example.tethys_1;
 
+import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
-
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -15,22 +16,31 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.sweetlime.tethys.R;
 
-public class eachbook extends Activity{
+@SuppressLint("NewApi") public class eachbook extends Activity{
     String auth,sub,nmrp,omrp,mrp;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.eachbook);
 		Intent i = getIntent();
 		sub= i.getStringExtra("sub");
 		auth= i.getStringExtra("auth");
 		nmrp= i.getStringExtra("nmrp");
 		omrp= i.getStringExtra("omrp");
 		mrp= i.getStringExtra("mrp");
-		
+		ActionBar ab = getActionBar();
+		int color = i.getIntExtra("color",R.color.black);
+		ab.setBackgroundDrawable(getResources().getDrawable(color));
+	/*	
+		Window window = getWindow();
+	    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+	    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+	    window.setStatusBarColor(color);
+	    setContentView(R.layout.eachbook);
+		*/
 	   TextView tv = (TextView) findViewById(R.id.sub);
 	    tv.setText(sub);
 	    tv = (TextView) findViewById(R.id.auth);
@@ -49,7 +59,7 @@ public class eachbook extends Activity{
 	    s.setAdapter(adap);
 	    
 	    final EditText et = (EditText) findViewById(R.id.et1);
-	   
+	    et.clearFocus();
 	    
 	    Button b = (Button) findViewById(R.id.addtocart);
 	    b.setOnClickListener(new OnClickListener(){
